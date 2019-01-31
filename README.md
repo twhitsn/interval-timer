@@ -1,8 +1,8 @@
 ## To-do
 
-- [] animated timer bar
-- [] support permalink
+- [ ] animated timer bar
+- [ ] support permalink
 
 ## Fix
 
-- [] breaks when pausing if at 00:00
+- [ ] breaks when pausing if at 00:00
