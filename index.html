@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Interval Timer</title>
+
+    <link rel="stylesheet" href="index.css">
+    <script src="linkedlist.js"></script>
+    <script src="controller.js"></script>
+    <script src="timer.js"></script>
+    <script src="cards.js"></script>
+    <script src="index.js"></script>
+
+    <!-- https://www.zapsplat.com/music/digital-alarm-clock-beeping-4/ -->
+    <audio id="audio">
+        <source src="alarm.mp3" type="audio/mpeg">
+    </audio>
+  </head>
+  <body>
+        <div id="display">
+            <span id="timeDisplay">00:00</span>
+            <span id="info"></span>
+        </div>
+
+        <div id="timerCommands">
+            <button id="startStopBtn">START</button>
+            <button id="resetBtn" class="secondary">RESET</button>
+        </div>
+        <div id="intervalCommands">
+            <i id="addBtn" class="fas fa-plus-circle"></i>
+            <button id="cardsBtn">CARDS</button>
+            <button id="clearBtn" class="secondary">CLEAR</button>
+            <i id="repeatBtn" class="fas fa-redo-alt" title="repeat"></i>
+        </div>
+        <form id="intervalForm" class="hide">
+            minutes <input type="number" name="mins">
+            seconds <input type="number" name="secs">
+            exercise <input type="text" name="exercise">
+            reps <input type="number" name="reps">
+            <button type="submit">Add</button>
+        </form>
+        <div id="intervalContainer"></div>
+  </body>
+</html>
