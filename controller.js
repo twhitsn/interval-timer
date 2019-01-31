@@ -125,7 +125,7 @@ class Controller {
 
     displayInfo(){
         if(this.currentInterval !== null){
-            let msg = `${this.currentInterval['reps']}x ${this.currentInterval['exercise']}`;
+            let msg = `${this.currentInterval['reps']} ${this.currentInterval['exercise']}`;
             this.infoElement.innerHTML = msg;
         }
     }
@@ -162,7 +162,7 @@ class Controller {
     cards(){
         let deck = new Deck();
         for(let card of deck.drawAll()){
-            this.addInterval({'secs': 3, 'mins': 0, 'reps': card[0], 'exercise': card[1]});
+            this.addInterval({'secs': 3, 'mins': 0, 'reps': `${card[0]} of`, 'exercise': card[1]});
         }
     }
 }

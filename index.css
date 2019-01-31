@@ -15,7 +15,22 @@ body {
     border-radius: 5px;
 }
 
-div {
+#display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#timeDisplay {
+    font-size: 5em;
+}
+
+#info {
+    text-align: center;
+    flex: 2;
+}
+
+body > div {
     padding: 20px;
     border-bottom: 1px solid var(--border);
 }
@@ -24,11 +39,7 @@ body > div:last-child {
     border-bottom: none;
 }
 
-#timeDisplay {
-    font-size: 5em;
-}
-
-button{
+button {
     background-color: var(--pcolor);
     border: none;
     border-radius: 2px;
@@ -51,6 +62,20 @@ button.secondary{
 #intervalContainer {
     max-height: 250px;
     overflow: auto;
+}
+
+#intervalContainer > div {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+#intervalContainer > div:first-child {
+    padding-top: 0;
+}
+
+#intervalContainer > div:last-child {
+    padding: 20px 20px 0 20px;
+    border-bottom: none;
 }
 
 .hide {

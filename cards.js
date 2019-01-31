@@ -3,7 +3,7 @@
 class Deck {
     constructor(){
         this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-        this.suits = ['S', 'C', 'H', 'D'];
+        this.suits = ['SPADES', 'CLUBS', 'HEARTS', 'DIAMONDS'];
 
         this.cards = this.combine();
         this.shuffle(this.cards);
