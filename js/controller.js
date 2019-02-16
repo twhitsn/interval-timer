@@ -25,7 +25,7 @@ class Controller {
         this.form.addEventListener('submit', (evt) => this.newIntervalSubmit(evt));
         document.getElementById('clearBtn').addEventListener('click', () => this.clear());
         document.getElementById('repeatBtn').addEventListener('click', () => this.repeatClick());
-        this.repeat = false;
+        this.repeat = true;
 
         // cards setup
         document.getElementById('cardsBtn').addEventListener('click', () => this.cards());
@@ -70,7 +70,7 @@ class Controller {
         elem.innerHTML = obj['exercise'];
         this.intervalContainer.appendChild(elem);
 
-        if(this.currentInterval === null){
+        if(this.currentInterval === null){ // first interval
             this.currentInterval = node;
             this.displayTime(this.currentInterval.secs);
             this.displayInfo();
@@ -98,9 +98,13 @@ class Controller {
         this.displayTime(remaining);
 
         if(remaining <= 0){
-            // end of timer, no repeat
-            if(this.repeat == false && this.currentInterval == this.intervals.tail){
-                return;
+            // end of timer
+            if(this.currentInterval == this.intervals.tail){
+                if(this.repeat === true){
+                    this.currentInterval = this.intervals.head;
+                } else{
+                    return;
+                }
             }
 
             this.playSound();
@@ -137,10 +141,6 @@ class Controller {
 
     playSound(){
         this.audio.play()
-        setTimeout(() => {
-            this.audio.pause();
-            this.audio.currentTime = 0;
-        }, 1000);
     }
 
     clear(){
@@ -162,7 +162,7 @@ class Controller {
     cards(){
         let deck = new Deck();
         for(let card of deck.drawAll()){
-            this.addInterval({'secs': 3, 'mins': 0, 'reps': `${card[0]} of`, 'exercise': card[1]});
+            this.addInterval({secs: 0, mins: 1, reps: `${card[0]} of`, exercise: card[1]});
         }
     }
 }

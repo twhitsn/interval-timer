@@ -27,9 +27,5 @@ class DoublyLinkedList {
             node.prev = this.tail;
             this.tail = node;
         }
-
-        // circular
-        this.tail.next = this.head;
-        this.head.prev = this.tail;
     }
 }

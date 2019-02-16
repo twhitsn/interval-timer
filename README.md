@@ -14,3 +14,4 @@ This is all still a work in progress.
 ## Fix
 
 - [ ] breaks when pausing if at 00:00
+- [ ] clear not working properly (timer still persists)
