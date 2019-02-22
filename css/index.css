@@ -59,6 +59,10 @@ button.secondary{
     background-color: var(--tcolor);
 }
 
+/******************************************************
+*              INTERVAL LIST
+******************************************************/
+
 #intervalContainer {
     max-height: 250px;
     overflow: auto;
@@ -70,13 +74,21 @@ button.secondary{
 }
 
 #intervalContainer > div:first-child {
-    padding-top: 0;
+    border-top: 1px solid var(--border);
 }
 
 #intervalContainer > div:last-child {
     padding: 20px 20px 0 20px;
     border-bottom: none;
 }
+
+.timer-list-item.current {
+    background-color: #EEE;
+}
+
+/******************************************************
+*                    MISC
+******************************************************/
 
 .hide {
     display: none;

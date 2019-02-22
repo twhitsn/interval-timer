@@ -48,17 +48,6 @@ class Controller {
         this.form.reset();
     }
 
-    // reset click event, reset timer and intervals
-    reset(){
-        this.currentInterval = this.intervals.head;
-        this.timer.remaining = this.currentInterval.secs;
-        this.displayTime(this.currentInterval.secs);
-        this.displayInfo();
-        if(this.timer.paused === false){
-            this.startStopBtn.click();
-        }
-    }
-
     // add new element to intervals
     addInterval(obj){
         // add to interval linked list
@@ -67,14 +56,29 @@ class Controller {
 
         // add text to container
         let elem = document.createElement('div');
+        elem.classList.add('timer-list-item');
+
+        // linked list node
+        elem.timerNode = node;
+        node.listElement = elem;
+
         elem.innerHTML = obj['exercise'];
         this.intervalContainer.appendChild(elem);
 
         if(this.currentInterval === null){ // first interval
-            this.currentInterval = node;
+            this.changeInterval(node);
             this.displayTime(this.currentInterval.secs);
             this.displayInfo();
         }
+    }
+
+    // change current to new interval
+    changeInterval(newNode){
+        if(this.currentInterval !== null){
+            this.currentInterval.listElement.classList.toggle('current');
+        }
+        this.currentInterval = newNode;
+        newNode.listElement.classList.toggle('current');
     }
 
     startTimer(evt){
@@ -101,7 +105,7 @@ class Controller {
             // end of timer
             if(this.currentInterval == this.intervals.tail){
                 if(this.repeat === true){
-                    this.currentInterval = this.intervals.head;
+                    this.changeInterval(this.currentInterval.head);
                 } else{
                     return;
                 }
@@ -109,7 +113,7 @@ class Controller {
 
             this.playSound();
             setTimeout(() => { // delay for 2 seconds before moving on
-                this.currentInterval = this.currentInterval.next;
+                this.changeInterval(this.currentInterval.next);
                 this.displayTime(this.currentInterval.secs);
                 this.startTimer();
             }, 2000);
@@ -157,6 +161,17 @@ class Controller {
         let repeatIcon = document.getElementById('repeatBtn');
         repeatIcon.classList.toggle('fa-redo-alt');
         repeatIcon.classList.toggle('fa-minus-circle');
+    }
+
+    // reset click event, reset timer and intervals
+    reset(){
+        this.changeInterval(this.intervals.head);
+        this.timer.remaining = this.currentInterval.secs;
+        this.displayTime(this.currentInterval.secs);
+        this.displayInfo();
+        if(this.timer.paused === false){
+            this.startStopBtn.click();
+        }
     }
 
     cards(){
