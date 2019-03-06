@@ -117,7 +117,7 @@ class Controller {
             setTimeout(() => { // delay for 2 seconds before moving on
                 this.changeInterval(this.currentInterval.next);
                 this.displayTime(this.currentInterval.secs);
-                this.startTimer();
+                this.startStopClick();
             }, 2000);
         }
     }
