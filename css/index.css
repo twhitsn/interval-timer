@@ -62,27 +62,41 @@ button.secondary{
 /******************************************************
 *              INTERVAL LIST
 ******************************************************/
-
-#intervalContainer {
+#intervalWrapper {
     max-height: 250px;
     overflow: auto;
 }
 
-#intervalContainer > div {
+#intervalContainer {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#intervalContainer th {
     padding: 20px;
+    text-align: left;
+    font-weight: normal;
+}
+
+#intervalContainer > .timer-list-item > td {
     border-bottom: 1px solid var(--border);
 }
 
-#intervalContainer > div:first-child {
+#intervalContainer > .timer-list-item:first-child {
     border-top: 1px solid var(--border);
 }
 
-#intervalContainer > div:last-child {
+#intervalContainer > .timer-list-item:last-child {
     padding: 20px 20px 0 20px;
     border-bottom: none;
 }
 
-.timer-list-item.current {
+#intervalContainer > .timer-list-item > td {
+    padding: 20px;
+}
+
+#intervalContainer > .timer-list-item.current {
     background-color: #EEE;
 }
 

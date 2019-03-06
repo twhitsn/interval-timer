@@ -5,6 +5,7 @@ class TimerNode {
         this.secs = obj['mins'] * 60 + obj['secs'];
         this.reps = obj['reps'];
         this.exercise = obj['exercise'];
+        this.msg = obj['msg'];
 
         // linked list
         this.prev = null;

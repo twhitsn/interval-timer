@@ -6,7 +6,7 @@ class Controller {
         this.timeDisplay = document.getElementById(timeDisplay);
         this.timer = new Timer();
         this.startStopBtn = document.getElementById('startStopBtn');
-        this.startStopBtn.addEventListener('click', () => this.startTimer())
+        this.startStopBtn.addEventListener('click', () => this.startStopClick())
         window.addEventListener('tick', (evt) => this.timerTick(evt));
         this.resetBtn = document.getElementById('resetBtn');
         this.resetBtn.addEventListener('click', () => this.reset());
@@ -55,17 +55,19 @@ class Controller {
         this.intervals.push(node);
 
         // add text to container
-        let elem = document.createElement('div');
+        let elem = document.createElement('tr');
         elem.classList.add('timer-list-item');
 
         // linked list node
         elem.timerNode = node;
         node.listElement = elem;
 
-        elem.innerHTML = obj['exercise'];
+        // table html
+        elem.innerHTML = `<td>${obj['exercise']}</td><td>${obj['reps']}</td>`;
         this.intervalContainer.appendChild(elem);
 
         if(this.currentInterval === null){ // first interval
+            document.getElementById('intervalHeader').classList.toggle('hide');
             this.changeInterval(node);
             this.displayTime(this.currentInterval.secs);
             this.displayInfo();
@@ -81,15 +83,17 @@ class Controller {
         newNode.listElement.classList.toggle('current');
     }
 
-    startTimer(evt){
+    startStopClick(evt){
         if(this.timer.remaining <= 0){
             this.timer.remaining = this.currentInterval.secs;
             this.displayInfo();
         }
 
         if(this.timer.paused === true){
+            navigator.wakeLock.release('display'); // prevent sleep
             this.startStopBtn.innerHTML = 'STOP';
         } else {
+            navigator.wakeLock.request('display');
             this.startStopBtn.innerHTML = 'START';
         }
 
@@ -107,7 +111,7 @@ class Controller {
                 if(this.repeat === true){
                     this.changeInterval(this.currentInterval.head);
                 } else{
-                    return;
+                    navigator.wakeLock.release('display');
                 }
             }
 
@@ -133,8 +137,7 @@ class Controller {
 
     displayInfo(){
         if(this.currentInterval !== null){
-            let msg = `${this.currentInterval['reps']} ${this.currentInterval['exercise']}`;
-            this.infoElement.innerHTML = msg;
+            this.infoElement.innerHTML = this.currentInterval.msg;
         }
     }
 
@@ -177,7 +180,8 @@ class Controller {
     cards(){
         let deck = new Deck();
         for(let card of deck.drawAll()){
-            this.addInterval({secs: 0, mins: 1, reps: `${card[0]} of`, exercise: card[1]});
+            this.addInterval({secs: 0, mins: 1,
+                reps: card[0], exercise: card[1], msg: `${card[0]} of ${card[1]}`});
         }
     }
 }
