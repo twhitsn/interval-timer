@@ -90,10 +90,8 @@ class Controller {
         }
 
         if(this.timer.paused === true){
-            navigator.wakeLock.release('display'); // prevent sleep
             this.startStopBtn.innerHTML = 'STOP';
         } else {
-            navigator.wakeLock.request('display');
             this.startStopBtn.innerHTML = 'START';
         }
 
@@ -111,7 +109,7 @@ class Controller {
                 if(this.repeat === true){
                     this.changeInterval(this.currentInterval.head);
                 } else{
-                    navigator.wakeLock.release('display');
+                    return;
                 }
             }
 

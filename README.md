@@ -12,6 +12,7 @@ This is all still a work in progress.
 - [ ] highlight current interval
 - [ ] animated timer bar
 - [ ] support permalink
+- [ ] prevent display from sleeping
 
 ## Fix
 
