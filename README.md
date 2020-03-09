@@ -4,7 +4,7 @@ I got tired of trying to find a decent interval timer online, so I made one. The
 
 This is all still a work in progress.
 
-[Live](https://whitstd.github.io/interval-timer/)
+[Live](https://twhitsn.github.io/interval-timer/)
 
 ## To-do
 
